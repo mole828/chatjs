@@ -23,8 +23,8 @@ export default (appInfo: EggAppInfo) => {
       init: {}, // passed to engine.io
       namespace: {
         '/chat': {
-          connectionMiddleware: ['connect','chatjoin'],
-          packetMiddleware: ['packet'],
+          connectionMiddleware: [ 'connect', 'chatjoin' ],
+          packetMiddleware: [ 'packet' ],
         },
         '/exchange': {
           connectionMiddleware: [],

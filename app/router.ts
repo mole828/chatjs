@@ -1,10 +1,10 @@
-import { Application, } from "egg";
+import { Application } from 'egg';
 
 export default (app:Application) => {
-  const { logger, io, } = app;
+  const { logger, io } = app;
 
-  const chat = io.of('/');
+  const chat = io.of('/chat');
   chat.route('msg', io.controller.chat.msg);
 
-  logger.error('router init')
+  logger.error('router init');
 };
