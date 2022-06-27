@@ -13,3 +13,4 @@ export default class Test extends Service {
     return `hi, ${name}`;
   }
 }
+

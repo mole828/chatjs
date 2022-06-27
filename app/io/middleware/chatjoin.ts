@@ -1,15 +1,18 @@
 import { Application, Context } from 'egg';
-import { pool } from '../controller/chat';
+import { Socket } from 'net';
+// import { pool } from '../controller/chat';
+export const pool = new Set<Socket>();
 export default function(app:Application) {
   const { logger } = app;
-  logger.error('middleware.connect init');
+  
+  logger.error('middleware.chatjoin init');
   return async (ctx:Context, next: ()=>Promise<any>) => {
-    const { socket } = ctx;
-
+    const { socket, logger, } = ctx;
+    
     {
       const before = [ ...pool ].length;
       pool.add(socket);
-      console.log(`${
+      logger.info(`${
         socket.id
       } join chat, ${before}=>${
         [ ...pool ].length
@@ -20,7 +23,7 @@ export default function(app:Application) {
     {
       const before = [ ...pool ].length;
       pool.delete(socket);
-      console.log(`${
+      logger.info(`${
         socket.id
       } out chat, ${before}=>${
         [ ...pool ].length
